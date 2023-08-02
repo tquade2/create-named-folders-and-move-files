@@ -2,7 +2,7 @@ import os
 import shutil
 
 # Specify the directory containing the shapefiles and their supporting files
-source_directory = r"C:\Users\tayqu\Desktop\Opiate Reversal Medication Geocoded Shapefiles"
+source_directory = r""
 
 # Loop through each file in the directory
 for filename in os.listdir(source_directory):
