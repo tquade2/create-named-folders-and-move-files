@@ -1,0 +1,28 @@
+import os
+import shutil
+
+# Specify the directory containing the shapefiles and their supporting files
+source_directory = r"C:\Users\tayqu\Desktop\Opiate Reversal Medication Geocoded Shapefiles"
+
+# Loop through each file in the directory
+for filename in os.listdir(source_directory):
+    # Check if the file is a shapefile (.shp)
+    if filename.endswith(".shp"):
+        # Get the base name without extension
+        base_name = os.path.splitext(filename)[0]
+
+        # Create a new directory with the base name
+        new_directory = os.path.join(source_directory, base_name)
+        os.makedirs(new_directory, exist_ok=True)
+
+        # Move all files with the same base name into the new directory
+        for file in os.listdir(source_directory):
+            file_path = os.path.join(source_directory, file)
+            # Check if it is a file and has the same base name
+            if os.path.isfile(file_path) and file.startswith(base_name):
+                # Check if destination directory is different from source (avoid moving directory into itself)
+                if os.path.abspath(file_path) != os.path.abspath(new_directory):
+                    shutil.move(file_path, os.path.join(new_directory, file))
+
+# Print completion message
+print("Shapefiles and supporting files have been organized into individual folders.")
